@@ -1,4 +1,4 @@
-import React from './node_modules/react';
+import React from 'react';
 import {
 	StyleSheet,
 	Text,
@@ -18,7 +18,9 @@ export default class Home extends React.Component {
 	}
 
 	handleSearchPress() {
-		alert(this.state.text);
+		this.props.navigation.navigate('Search', {
+			query: this.state.text,
+	});
 	}
 
 	render() {

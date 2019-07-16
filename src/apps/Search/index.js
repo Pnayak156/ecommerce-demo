@@ -22,9 +22,9 @@ export default class Search extends Component {
     }
 
     handlePress (productData) {
-        // this.props.navigation.navigate('PDP', {
-        //     data: productData,
-        // });
+        this.props.navigation.navigate('PDP', {
+            data: productData,
+        });
     }
 
     keyExtractor = (item) => item.styleid
@@ -33,10 +33,8 @@ export default class Search extends Component {
         this.setState({
             loading: true,
         });
-        // const { navigation } = this.props;
-        // const query = navigation.getParam('query', '');
-        // let url = `http://developer.myntra.com/search/data/${query}`;
-        const query = 'Nike';
+        const { navigation } = this.props;
+        const query = navigation.getParam('query', '');
         let url = `http://developer.myntra.com/search/data/${query}`;
 
 
