@@ -1,52 +1,56 @@
 import React from 'react';
-import { StyleSheet,
-  View,
-  Image,
-  Text,
-  TextInput } from 'react-native';
+import {
+	StyleSheet,
+	Text,
+	View,
+	TextInput,
+	Image,
+	TouchableWithoutFeedback,
+} from 'react-native';
 
-const myntraLogo = 'https://assets.myntassets.com/assets/images/retaillabs/2018/7/16/3ec24395-fec9-4cf9-9440-9118de40555a1531742032871-myntra-logo.png';
-const textColor = '#161925';
+let myntraLogo = 'https://assets.myntassets.com/assets/images/retaillabs/2018/7/16/3ec24395-fec9-4cf9-9440-9118de40555a1531742032871-myntra-logo.png';
 
 export default class App extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = { text: '' };
+		this.handleSearchPress = this.handleSearchPress.bind(this);
+	}
 
-  constructor(props) {
-    super(props);
-    this.state = {text: ''};
-  }
-  render() {
-    return (
-      <View style={styles.container}>
-        <Image source={{uri: myntraLogo}} style={styles.logo}/>
-        <Text style={styles.textInfo}> Search Products on Myntra</Text>
-        <View style={styles.inputContainer}>
-          <TextInput
-          style={styles.input}
-          onChangeText={(text) => this.setState({text})}
-          value={this.state.text}/>
-        </View>
-      </View>
-    );
-  }
+	handleSearchPress() {
+		alert(this.state.text);
+	}
+
+	render() {
+		return (
+			<View style={styles.container}>
+				<Image source={{ uri: myntraLogo }} style={styles.logo} />
+				<Text style={[styles.infoText, styles.medium]}>SEARCH PRODUCTS ON <Text style={styles.regular}>MYNTRA</Text></Text>
+				<View style={styles.inputContainer}>
+					<TextInput
+						style={styles.input}
+						onChangeText={(text) => this.setState({text})}
+						value={this.state.text}
+					/>
+				</View>
+				<TouchableWithoutFeedback onPress={this.handleSearchPress}>
+					<View style={styles.nextBtn}>
+						<Text style={styles.nextBtnText}>GO</Text>
+					</View>
+				</TouchableWithoutFeedback>
+			</View>
+		);
+	}
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    marginTop: 50,
-  },
-  logo: {
-    width: 100,
-    height: 100,
-  },
-  textInfo: {
-    marginTop: 80,
-    color: textColor,
-    fontSize: 11,
-  },
-  inputContainer: {
+	container: {
+		flex: 1,
+		backgroundColor: '#fff',
+		alignItems: 'center',
+		marginTop: 50,
+	},
+	inputContainer: {
 		flexDirection: 'row',
 		alignItems: 'center',
 		marginTop: 25,
@@ -58,10 +62,39 @@ const styles = StyleSheet.create({
 		borderRadius: 4,
 		alignSelf: 'stretch',
 		paddingHorizontal: 15,
-  },
-  input: {
+	},
+	input: {
 		flex: 1,
 		color: '#161925',
 		fontSize: 20,
+	},
+	nextBtn: {
+		marginTop: 50,
+		height: 40,
+		width: 100,
+		backgroundColor: '#FF3F6C',
+		justifyContent: 'center',
+		borderRadius: 50,
+	},
+	nextBtnText: {
+		fontWeight: 'bold',
+		fontSize: 13,
+		color: '#ffffff',
+		alignSelf: 'center',
+	},
+	logo: {
+		width: 100,
+		height: 100,
+	},
+	infoText: {
+		fontSize: 11,
+		letterSpacing : 1.5,
+		marginTop: 80,
+	},
+	medium: {
+		color: '#161925',
+	},
+	regular: {
+		color: '#94989f',
 	},
 });
